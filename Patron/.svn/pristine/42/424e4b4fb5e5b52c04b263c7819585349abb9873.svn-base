@@ -1,0 +1,24 @@
+package tp1nicolasobs;
+
+/**
+ * Tableau de valeurs enti�res positives
+ * @author fmallet
+ *
+ */
+public interface ITableauEntier {
+	/**
+	 * @return La longueur du tableau
+	 */
+	int getLongueur();
+	
+	/**
+	 * @param num indice de la valeur � acc�der dans [0; longeur[
+	 * @return (num+1) valeur du tableau
+	 */
+	int getValeur(int num);
+	
+	/**
+	 * @return valeur maximum dans le tableau
+	 */
+	int getMaximum();
+}

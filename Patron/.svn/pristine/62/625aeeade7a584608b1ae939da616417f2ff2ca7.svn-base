@@ -1,0 +1,312 @@
+package tp1nicolasobs;
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
+/**
+ * The type Test observer observable.
+ *
+ * @author Nicolas Date : 02/10/13 17:47
+ */
+public class TestObserverObservable
+{
+
+    //Initialisation variable
+    private JFrame fen = new JFrame();
+
+    private JPanel boutons = new JPanel();
+    private JPanel dessins = new JPanel();
+
+    private VueBar vue = new VueBar();
+    private TableauEntierEtendu modele = new TableauEntierEtendu();
+    private GrapheurTabEntiers controleur = new GrapheurTabEntiers(vue, modele);
+
+    private JButton random = new JButton("RANDOM");
+    private JButton nvlleVue = new JButton("nouvelle vue");
+    private JButton nvlleFen = new JButton("nouvelle fenetre");
+
+    private ArrayList<GrapheurTabEntiers> listeFenetre = new ArrayList<GrapheurTabEntiers>();
+
+
+    /**
+     * Instantiates a new Test observer observable.
+     */
+    public TestObserverObservable()
+    {
+        fen.setSize(1600, 900);
+        fen.setTitle("Observer Observable");
+        fen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        fen.setLayout(new BorderLayout());
+
+        //Initilialisation des JPanel
+        boutons.setLayout(new GridLayout());
+        dessins.setLayout(new GridLayout());
+
+        random.addActionListener(new BoutonRandom(this));
+        nvlleVue.addActionListener(new BoutonInterne(this));
+        nvlleFen.addActionListener(new BoutonExterne(this));
+
+        boutons.add(random);
+        boutons.add(nvlleVue);
+        boutons.add(nvlleFen);
+
+
+    }
+
+    /**
+     * Add frame.
+     *
+     * @param controleur the controleur
+     */
+    public void addFrame(GrapheurTabEntiers controleur)
+    {
+
+    }
+
+    /**
+     * Gets fen.
+     *
+     * @return the fen
+     */
+    public JFrame getFen()
+    {
+        return fen;
+    }
+
+    /**
+     * Sets fen.
+     *
+     * @param fen the fen
+     */
+    public void setFen(JFrame fen)
+    {
+        this.fen = fen;
+    }
+
+    /**
+     * Gets dessins.
+     *
+     * @return the dessins
+     */
+    public JPanel getDessins()
+    {
+        return dessins;
+    }
+
+    /**
+     * Sets dessins.
+     *
+     * @param dessins the dessins
+     */
+    public void setDessins(JPanel dessins)
+    {
+        this.dessins = dessins;
+    }
+
+    /**
+     * Gets boutons.
+     *
+     * @return the boutons
+     */
+    public JPanel getBoutons()
+    {
+        return boutons;
+    }
+
+    /**
+     * Sets boutons.
+     *
+     * @param boutons the boutons
+     */
+    public void setBoutons(JPanel boutons)
+    {
+        this.boutons = boutons;
+    }
+
+    /**
+     * Gets liste fenetre.
+     *
+     * @return the liste fenetre
+     */
+    public ArrayList<GrapheurTabEntiers> getListeFenetre()
+    {
+        return listeFenetre;
+    }
+
+    /**
+     * Sets liste fenetre.
+     *
+     * @param listeFenetre the liste fenetre
+     */
+    public void setListeFenetre(ArrayList<GrapheurTabEntiers> listeFenetre)
+    {
+        this.listeFenetre = listeFenetre;
+    }
+
+    /**
+     * Gets controleur.
+     *
+     * @return the controleur
+     */
+    public GrapheurTabEntiers getControleur()
+    {
+        return controleur;
+    }
+
+    /**
+     * Sets controleur.
+     *
+     * @param controleur the controleur
+     */
+    public void setControleur(GrapheurTabEntiers controleur)
+    {
+        this.controleur = controleur;
+    }
+
+    /**
+     * Gets modele.
+     *
+     * @return the modele
+     */
+    public TableauEntierEtendu getModele()
+    {
+        return modele;
+    }
+
+    /**
+     * Sets modele.
+     *
+     * @param modele the modele
+     */
+    public void setModele(TableauEntierEtendu modele)
+    {
+        this.modele = modele;
+    }
+
+    /**
+     * Gets vue.
+     *
+     * @return the vue
+     */
+    public VueBar getVue()
+    {
+        return vue;
+    }
+
+    /**
+     * Sets vue.
+     *
+     * @param vue the vue
+     */
+    public void setVue(VueBar vue)
+    {
+        this.vue = vue;
+    }
+
+    /**
+     * Gets random.
+     *
+     * @return the random
+     */
+    public JButton getRandom()
+    {
+        return random;
+    }
+
+    /**
+     * Sets random.
+     *
+     * @param random the random
+     */
+    public void setRandom(JButton random)
+    {
+        this.random = random;
+    }
+
+    /**
+     * Gets nvlle vue.
+     *
+     * @return the nvlle vue
+     */
+    public JButton getNvlleVue()
+    {
+        return nvlleVue;
+    }
+
+    /**
+     * Sets nvlle vue.
+     *
+     * @param nvlleVue the nvlle vue
+     */
+    public void setNvlleVue(JButton nvlleVue)
+    {
+        this.nvlleVue = nvlleVue;
+    }
+
+    /**
+     * Ajoute une fenetre interne
+     *
+     * @param controleur
+     */
+    public void ajouteFenetreInterne(GrapheurTabEntiers controleur)
+    {
+        listeFenetre.add(controleur);
+        fen.remove(dessins);
+
+
+        dessins = new JPanel();
+        dessins.setLayout(new GridLayout());
+        for(GrapheurTabEntiers val : listeFenetre)
+        {
+            dessins.add(val);
+        }
+        fen.add(dessins, BorderLayout.CENTER);
+        fen.pack();
+    }
+
+    /**
+     * Ajoute une fenetre extéreieur
+     *
+     * @param controleur
+     */
+    public void ajouteFenetreExterne(GrapheurTabEntiers controleur)
+    {
+
+        JFrame fe = new JFrame("fenetre externe ");
+        JPanel p = new JPanel(new BorderLayout());
+        fe.setSize(640, 480);
+        fe.setLayout(new BorderLayout());
+        p.add(controleur);
+        fe.add(p, BorderLayout.CENTER);
+        fe.setVisible(true);
+
+    }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args)
+    {
+        //TODO Quand on appuie sur nouvelle fenetre, le même dessin doit apparaitre dans la même fenetre
+
+        //Initilaisation boutons
+
+        TestObserverObservable fenetre = new TestObserverObservable();
+
+
+        //Ajout du grapheur dans la fenetre et du bouton
+        fenetre.getFen().add(fenetre.getControleur(), BorderLayout.CENTER);
+
+        fenetre.getFen().add(fenetre.getBoutons(), BorderLayout.NORTH);
+
+
+        fenetre.getFen().setVisible(true);
+
+    }
+
+
+}

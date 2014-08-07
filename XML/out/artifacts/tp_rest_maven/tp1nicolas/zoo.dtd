@@ -1,0 +1,44 @@
+<!DOCTYPE zoo [
+        <!ELEMENT zoo (info|cage|aquarium)*>
+        <!ELEMENT info (#PCDATA)>
+        <!ELEMENT cage (primates)*>
+        <!ELEMENT primates (gorilles|babouins)*>
+        <!ELEMENT gorilles (nom|sexe|taille|poids)*>
+        <!ATTLIST gorilles
+                id CDATA #REQUIRED
+                date CDATA #REQUIRED>
+        <!ELEMENT nom (#PCDATA)>
+        <!ELEMENT sexe (#PCDATA)>
+        <!ELEMENT taille (#PCDATA)>
+        <!ATTLIST taille
+                unite CDATA #IMPLIED
+                unité CDATA #IMPLIED>
+        <!ELEMENT poids (#PCDATA)>
+        <!ATTLIST poids
+                status CDATA #IMPLIED
+                unite CDATA #IMPLIED
+                unité CDATA #IMPLIED>
+        <!ELEMENT babouins (nom|sexe|taille|poids)*>
+        <!ATTLIST babouins
+                id CDATA #REQUIRED
+                date CDATA #REQUIRED>
+        <!ELEMENT aquarium (mammifères-marins|poissons)*>
+        <!ELEMENT mammifères-marins (dauphins)*>
+        <!ELEMENT dauphins (dauphin)*>
+        <!ELEMENT dauphin (nom|sexe|taille|poids)*>
+        <!ATTLIST dauphin
+                date-naissance CDATA #REQUIRED
+                id CDATA #REQUIRED
+                photo CDATA #REQUIRED>
+        <!ELEMENT poissons (sélaciens)*>
+        <!ELEMENT sélaciens (danger|requin)*>
+        <!ELEMENT danger (b)*>
+        <!ELEMENT b (#PCDATA)>
+        <!ELEMENT requin (nom|sexe|taille|poids|commentaire)*>
+        <!ATTLIST requin
+                date-naissance CDATA #REQUIRED
+                espèce CDATA #REQUIRED
+                id CDATA #REQUIRED
+                nom-savant CDATA #IMPLIED>
+        <!ELEMENT commentaire (#PCDATA)>
+        ]>

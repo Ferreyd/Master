@@ -1,0 +1,90 @@
+package tp1nicolasobs;
+
+import java.util.Observable;
+import java.util.Random;
+
+/**
+ * La classe <code>TableauEntierEtendu</code> permet de construire des tableaux d'entiers
+ * avec des valeurs al�atoires, elle fournit des m�thodes pour m�langer le tableau,
+ * calculer sa plus grande valeur, etc...
+ *
+ * @author Michel Buffa, modifi� par $Author: grin $
+ * @version $Revision: 1.2 $, $Date: 1999/09/30 12:59:03 $
+ */
+public class TableauEntierEtendu extends Observable implements ITableauEntier
+{
+    private int maxValeurs;
+    private int[] tab;
+    private Random gen = new Random();
+
+    /**
+     * Construit un tableau de taille 10 et le remplit al�atoirement
+     * avec des nombres entiers positifs entre 0 et 100.
+     */
+    public TableauEntierEtendu()
+    {
+        this(10, 100);
+    }
+
+    /**
+     * Construit un tableau de la taille sp�cifi�e et le remplit
+     * al�atoirement avec des nombres entiers positifs entre 0 et maxValeurs.
+     *
+     * @param longueur   longueur du tableau.
+     * @param maxValeurs toutes les valeurs doivent �tre inf�rieures � maxValeurs
+     */
+
+    public TableauEntierEtendu(int longueur, int maxValeurs)
+    {
+        assert (maxValeurs > 1) : "La valeur maximum doit �tre au moins �gale � 2";
+        assert (longueur > 0) : "Ne peut cr�er que des tableaux non vides";
+        tab = new int[longueur];
+        this.maxValeurs = maxValeurs;
+
+        melange();
+    }
+
+    /**
+     * @return longueur du tableau
+     */
+    @Override
+    public int getLongueur()
+    {
+        return tab.length;
+    }
+
+    /*
+     * Remplit le tableau avec des nombres entiers positifs al�atoires,
+     * compris entre 0 et maxValeurs
+     */
+    public void melange()
+    {
+        for(int i = 0 ; i < tab.length ; i++)
+        {
+            tab[i] = gen.nextInt(maxValeurs);
+        }
+        previensLesObservateurQueTuAsChange();
+    }
+
+    protected void previensLesObservateurQueTuAsChange()
+    {
+        // On pr�vient les �ventuels �couteurs que les valeurs du tableau
+        setChanged();
+        notifyObservers();
+    }
+
+    /**
+     * @return la valeur du nieme �l�ment du tableau
+     */
+    @Override
+    public int getValeur(int n)
+    {
+        return tab[n];
+    }
+
+    @Override
+    public int getMaximum()
+    {
+        return this.maxValeurs;
+    }
+}

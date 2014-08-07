@@ -1,0 +1,142 @@
+package tp2.damien.correction.bebetes.test;
+
+import static java.lang.Math.PI;
+import static org.junit.Assert.assertEquals;
+
+import java.awt.Color;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import tp2.damien.correction.bebetes.Bebete;
+import tp2.damien.correction.bebetes.BebeteEmergente;
+import tp2.damien.correction.bebetes.ChampDeBebetes;
+import tp2.damien.correction.strategybebete.Emergent;
+
+
+public class TestOrdre {
+	
+	Bebete b1, b2;
+	ChampDeBebetes c;
+	ArrayList<Bebete> list;
+	JFrame f ;
+	
+	// nombre d'iteration...
+	int nbIter = 100;
+	
+	// parametres
+	double angle =  (PI / 4f);
+	double angle2 = (angle)*3;
+	double vitesse1 = 5f;
+	double vitesse2 = 5f;
+	
+	// oracles
+	double newAngle = (angle+angle2)/2;
+	double newVitesse = (vitesse1+vitesse2)/2;
+	
+	@BeforeClass
+	public static void globalInit() {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		
+		
+		c = new ChampDeBebetes(600, 480, 2);
+		b1 = new BebeteEmergente(c, 100, 100, angle, vitesse1, Color.green);
+		b1.setStrategy(new Emergent());
+		b2 = new BebeteEmergente(c, 120, 100, angle2, vitesse2, Color.red);
+		b2.setStrategy(new Emergent());
+		b1.setChampDeVue(PI);
+		b2.setChampDeVue(PI);
+		
+		// a mettre si on veut voir...
+//		f =  new JFrame("test");
+//		f.add(c);
+//		f.pack();
+//		f.setVisible(true);
+		
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		// a mettre si on a voulu voir...
+//		f.dispose();
+//		f = null;
+		list.remove(b1);
+		list.remove(b2);
+		c.setDessinables(null);
+		list = null;
+		c = null;
+		b1=null;
+		b2=null;
+		System.gc();
+	}
+
+	@Test
+	public void testNextStepSens12() {
+		list = new ArrayList<Bebete>();
+		list.add(b1);
+		list.add(b2);
+		c.setDessinables(list);
+		
+		int nb_pas = 0;
+		while (nb_pas <= nbIter)
+		{
+			System.out.println(" .... "+nb_pas);
+			c.nextStep();
+			// uniquement si on veut voir...
+//			try {
+//				TimeUnit.MILLISECONDS.sleep(100);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			assertEquals("valeur direction", b1.getDirectionCourante(), newAngle, 0.01f);
+			assertEquals("direction", b1.getDirectionCourante(), b2.getDirectionCourante(), 0.01f);
+			assertEquals("vitesse", b1.getVitesseCourante(), b2.getVitesseCourante(), 0.01f);
+			assertEquals("valeur direction", b1.getVitesseCourante(), newVitesse, 0.01f);
+			
+			nb_pas++;
+		}
+		
+		
+	}
+	
+	@Test
+	public void testNextStepSens21() {
+		list = new ArrayList<Bebete>();
+		list.add(b2);
+		list.add(b1);
+		c.setDessinables(list);
+		
+		int nb_pas = 0;
+		while (nb_pas <= nbIter)
+		{
+			c.nextStep();
+			// uniquement si on veut voir...
+//			try {
+//				TimeUnit.MILLISECONDS.sleep(100);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			assertEquals("direction", b1.getDirectionCourante(), b2.getDirectionCourante(), 0.01f);
+			assertEquals("valeur direction", newAngle, b1.getDirectionCourante(),  0.01f);
+			assertEquals("vitesse", b1.getVitesseCourante(), b2.getVitesseCourante(), 0.01f);
+			assertEquals("valeur direction", newVitesse, b1.getVitesseCourante(),  0.01f);
+			
+			nb_pas++;
+		}
+		
+		
+	}
+	
+
+
+}

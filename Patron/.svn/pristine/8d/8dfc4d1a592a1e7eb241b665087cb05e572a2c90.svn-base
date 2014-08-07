@@ -1,0 +1,86 @@
+package tp2nicolas.bebetes.usine;
+
+import tp2nicolas.bebetes.Bebete;
+import tp2nicolas.bebetes.BebeteEmergente;
+import tp2nicolas.bebetes.ChampDeBebetes;
+import tp2nicolas.bebetes.decorateur.DecorateurBebete;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
+
+/**
+ * The type Emergente factory.
+ * @author Nicolas Date : 20/11/13 18:39
+ */
+public class EmergenteFactory extends BebeteFactory
+{
+    private ChampDeBebetes champs;
+    private Bebete bebete;
+
+    /**
+     * Instantiates a new Emergente factory.
+     *
+     * @param champs the champs
+     */
+    public EmergenteFactory(ChampDeBebetes champs)
+    {
+        this.champs = champs;
+    }
+
+    /**
+     * Crée une bebete
+     * @param nb      Le nombre de bebete, utile pour la génération....
+     * @return     une bebete emergente
+     */
+    @Override
+    public Bebete getBebete(int nb)
+    {
+        double racineCubiqueDuNombreDeBebetes = Math.pow((double) nb, 1.0 / 3.0);
+        double etapeDeCouleur = (1.0 / racineCubiqueDuNombreDeBebetes);
+        Random generateur = new Random();
+        float r = 0.0f;
+        float g = 0.0f;
+        float b = 0.0f;
+
+        int x = (int) (generateur.nextFloat() * champs.getLargeur());
+        if(x > champs.getLargeur() - Bebete.TAILLEGRAPHIQUE) x -= Bebete.TAILLEGRAPHIQUE;
+        int y = (int) (generateur.nextFloat() * champs.getHauteur());
+        if(y > champs.getHauteur() - Bebete.TAILLEGRAPHIQUE) y -= Bebete.TAILLEGRAPHIQUE;
+        double direction = (generateur.nextFloat() * 2 * Math.PI);
+        double vitesse = Math.max(2, generateur.nextDouble() * champs.getVitesseMax());
+        r += etapeDeCouleur;
+        if(r > 1.0)
+        {
+            r -= 1.0f;
+            g += etapeDeCouleur;
+            if(g > 1.0)
+            {
+                g -= 1.0f;
+                b += etapeDeCouleur;
+                if(b > 1.0) b -= 1.0f;
+            }
+        }
+        bebete = new BebeteEmergente(champs, x, y, direction, vitesse, new Color(r, g, b));
+        return bebete;
+    }
+
+    /**
+     * Crée une liste de bebete
+     * @param n Le nombre de Bebetes emergente
+     * @return la liste de Bebetes emergente
+     */
+    @Override
+    public ArrayList<Bebete> getBebetes(int n)
+    {
+       ArrayList<Bebete> listeBebete = new ArrayList<Bebete>();
+       for(int i = 0 ; i < n ; i++)
+       {
+           Bebete b = getBebete(n);
+           listeBebete.add(b);
+           listeBebete.add(new DecorateurBebete(b));
+       }
+
+        return listeBebete;
+    }
+}

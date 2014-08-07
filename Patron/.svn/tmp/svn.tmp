@@ -1,0 +1,43 @@
+package tp1jeremyobs;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
+public class TestObserverObservable {
+	
+	public static void main(String[] args){
+		//JPanel pour les zones de la barre du haut...
+		
+		final JFrame f = new JFrame();
+		JButton b_random = new JButton("random");
+		JButton b_new_interne = new JButton("nouvelle fenetre interne");
+		
+			
+		final TableauEntierEtendu t = new TableauEntierEtendu();
+		VueBar v = new VueBar();
+		GrapheurTabEntiers gt = new GrapheurTabEntiers(v, t);
+		
+		f.setSize(640, 480);
+		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		f.setLayout(new BorderLayout());
+		b_random.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				t.melange();
+				f.repaint();
+			}
+		});	
+		f.add(gt, BorderLayout.CENTER);
+		f.add(b_random, BorderLayout.NORTH);
+		
+		f.setVisible(true);
+		
+	}
+
+}

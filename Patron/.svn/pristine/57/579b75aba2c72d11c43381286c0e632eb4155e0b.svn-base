@@ -1,0 +1,18 @@
+package tp2jeremy.bebetes.factory;
+
+import java.util.ArrayList;
+
+import tp2jeremy.bebetes.Bebete;
+import tp2jeremy.bebetes.ChampDeBebetes;
+
+public abstract class BebeteFactory {
+	
+	public abstract Bebete getBebete();
+	
+	public abstract ArrayList<Bebete> getBebetes(int n);
+	
+	public static BebeteFactory getDefaultFactory(ChampDeBebetes champ){
+		return new HasardFactory(champ);
+	}
+	 
+}

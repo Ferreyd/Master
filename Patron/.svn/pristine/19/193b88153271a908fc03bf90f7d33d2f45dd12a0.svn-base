@@ -1,0 +1,18 @@
+package tp2jeremy.bebetes.factory;
+
+import java.util.ArrayList;
+
+import tp2jeremy.bebetes.Bebete;
+
+public abstract class BebeteFactory {
+	private Bebete bebete;
+	
+	public Bebete getBebete(){
+		return bebete;
+	};
+	
+	public ArrayList<Bebete> getBebetes(int n){
+		
+		return null;
+	}
+}

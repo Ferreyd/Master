@@ -1,0 +1,101 @@
+package tp2nicolas.bebetes;
+
+import tp2nicolas.bebetes.usine.EmergenteFactory;
+import tp2nicolas.simu.Actionnable;
+import tp2nicolas.simu.Simulateur;
+import tp2nicolas.visu.Dessinable;
+import tp2nicolas.visu.Positionnable;
+import tp2nicolas.visu.VisualisateurAnime;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class ChampDeBebetes extends VisualisateurAnime
+{
+    private static final long serialVersionUID = 5823608240299297297L;
+
+    public static final double vitesseMax = 10f;
+
+    protected Simulateur simu; // Mariage de convenance !!!
+
+    public ChampDeBebetes(int largeur, int hauteur, int nb)
+    {
+        super(largeur, hauteur);
+        setPreferredSize(new Dimension(largeur, hauteur));
+        List<? extends Bebete> lb = fabriqueBebetes(nb);
+        // Initialisation du mariage de convenance avec le simulateur
+        simu = new Simulateur(50, lb);
+        setDessinables(lb);
+    }
+
+	/* Red�finitions pour synchroniser la gestion des 2 threads */
+
+    public void demarre()
+    {
+        // on d�marre d'abord la simulation
+        simu.demarre();
+        super.demarre();
+    }
+
+    public void arrete()
+    {
+        // on arr�te d'abord la visualisation
+        super.arrete();
+        simu.arrete();
+    }
+
+    public double getVitesseMax()
+    {
+        return vitesseMax;
+    }
+
+    public ArrayList<? extends Bebete> fabriqueBebetes(int nb)
+    {
+       EmergenteFactory emergenteFactory =  new EmergenteFactory(this);
+       return emergenteFactory.getBebetes(nb);
+    }
+
+    public int getNombreDeBebetes()
+    {
+        return getPositionnables().size();
+    }
+
+    public int getDelaiSimulation()
+    { // D�l�gation
+        return simu.getDelaiSimulation();
+    }
+
+    public void setDelaiSimulation(int delaiSimu)
+    { // D�l�gation
+        simu.setDelaiSimulation(delaiSimu);
+    }
+
+    public void nextStep()
+    {
+        simu.iteration();
+    }
+
+    @Override
+    public void setDessinables(List<? extends Dessinable> dessinables)
+    {
+        super.setDessinables(dessinables);
+
+        // a cause des deux mariages : une liste pour deux...
+        // a condition qu'elles soient compatibles...
+        ArrayList<Actionnable> output = new ArrayList<Actionnable>();
+
+        if(dessinables != null)
+        {
+            for(Positionnable p : dessinables)
+            {
+                if(p instanceof Actionnable) output.add((Actionnable) p);
+            }
+            simu.setActionnables(output);
+        }
+
+
+    }
+
+}

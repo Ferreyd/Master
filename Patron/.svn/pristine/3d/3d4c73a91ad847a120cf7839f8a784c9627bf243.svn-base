@@ -1,0 +1,6 @@
+package tp2jeremy.bebetes.factory;
+
+public class EmergenteFactory extends BebeteFactory{
+
+	
+}

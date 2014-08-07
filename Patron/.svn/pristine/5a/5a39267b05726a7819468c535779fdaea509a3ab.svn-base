@@ -1,0 +1,155 @@
+package tp2nicolas.bebetes.decorateur;
+
+import tp2nicolas.bebetes.Bebete;
+import tp2nicolas.visu.Champ;
+
+import java.awt.*;
+
+/**
+ * The type Decorateur bebete.
+ *
+ * @author Nicolas          Date : 12/11/13 11:19
+ */
+public class DecorateurBebete extends Bebete
+{
+
+    private Bebete bebete; //Bebete
+
+    /**
+     * Instantiates a new Decorateur bebete.
+     *
+     * @param bebete the bebete
+     */
+    public DecorateurBebete(Bebete bebete)
+    {
+        this.bebete = bebete;
+    }
+
+    @Override
+    public void calculeDeplacementAFaire()
+    {
+        //To change body of implemented methods use File | Settings | File Templates.
+        bebete.calculeDeplacementAFaire();
+    }
+
+    @Override
+    public void effectueDeplacement()
+    {
+        //To change body of implemented methods use File | Settings | File Templates.
+        bebete.effectueDeplacement();
+    }
+
+    @Override
+    public double getX()
+    {
+        return super.getX();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setX(double x)
+    {
+        super.setX(x);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public double getY()
+    {
+        return super.getY();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setY(double y)
+    {
+        super.setY(y);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Champ getChamp()
+    {
+        return super.getChamp();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public double getVitesseCourante()
+    {
+        return super.getVitesseCourante();    //To change body of overridden methods use File | Settings | File
+        // Templates.
+    }
+
+    @Override
+    public void setVitesseCourante(double vitesseCourante)
+    {
+        super.setVitesseCourante(vitesseCourante);    //To change body of overridden methods use File | Settings |
+        // File Templates.
+    }
+
+    @Override
+    public double getDirectionCourante()
+    {
+        return super.getDirectionCourante();    //To change body of overridden methods use File | Settings | File
+        // Templates.
+    }
+
+    @Override
+    public void setDirectionCourante(double directionCourante)
+    {
+        super.setDirectionCourante(directionCourante);    //To change body of overridden methods use File | Settings
+        // | File Templates.
+    }
+
+    @Override
+    public Color getCouleur()
+    {
+        return super.getCouleur();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void seDessine(Graphics g)
+    {
+        super.seDessine(g);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public double getChampDeVue()
+    {
+        return super.getChampDeVue();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public int getLongueurDeVue()
+    {
+        return super.getLongueurDeVue();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setLongueurDeVue(int lDV)
+    {
+        super.setLongueurDeVue(lDV);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setChampDeVue(double cDV)
+    {
+        super.setChampDeVue(cDV);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    /**
+     * Gets bebete.
+     *
+     * @return the bebete
+     */
+    public Bebete getBebete()
+    {
+        return bebete;
+    }
+
+    /**
+     * Sets bebete.
+     *
+     * @param bebete the bebete
+     */
+    public void setBebete(Bebete bebete)
+    {
+        this.bebete = bebete;
+    }
+}

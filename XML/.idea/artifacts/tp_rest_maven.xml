@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="tp rest maven">
+    <output-path>$PROJECT_DIR$/out/artifacts/tp_rest_maven</output-path>
+    <root id="root">
+      <element id="module-output" name="XML" />
+    </root>
+  </artifact>
+</component>

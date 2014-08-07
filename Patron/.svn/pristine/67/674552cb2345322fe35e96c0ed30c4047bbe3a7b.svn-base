@@ -1,0 +1,16 @@
+package tp2nicolas.bebetes.usine;
+
+import tp2nicolas.bebetes.Bebete;
+
+/**
+ * @author Nicolas
+ *         Date : 20/11/13 17:34
+ */
+public class AleatoireBebeteFactory extends BebeteFactory
+{
+    @Override
+    public Bebete creerBebete()
+    {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+}

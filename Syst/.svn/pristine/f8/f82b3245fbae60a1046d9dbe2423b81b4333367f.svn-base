@@ -1,0 +1,30 @@
+package TPJeremy.TP1;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+
+public class Server {
+
+	private int port;
+	
+	public Server(int port){
+		this.port = port;
+	}
+
+	public void execute(){
+		
+		ServerSocket socketserver;
+		try {
+			socketserver = new ServerSocket(8088);
+			socketserver.wait();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Serveur lancé");
+	}
+
+}

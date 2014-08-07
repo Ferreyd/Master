@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE zoo SYSTEM "zoo.dtd" [
+<!ENTITY % notations SYSTEM "notations.ent">
+%notations;
+<!ENTITY flipper.jpg SYSTEM "flipper.jpg" NDATA jpg>
+<!ENTITY oum.jpg SYSTEM "oum.jpg" NDATA jpg>
+<!ENTITY ecco.jpg SYSTEM "ecco.jpg" NDATA jpg>
+]>
+
+<zoo>
+	<info>Ouvert de 6h18 a 18h25</info>
+	<info><img src="nourrir.gif" />Il est <b>interdit</b> de nourrir les animaux&#127;&#128;.</info>
+	
+	<aquarium>
+		<mammiferes-marins>
+			<dauphins>
+				<dauphin id="424242" photo="flipper.jpg" date-naissance="10-10-1980">
+					<nom> Flipper </nom>
+					<sexe> M </sexe>
+					<taille unite="cm"> 240 </taille>
+					<poids unite="kg"> 120 </poids>
+				</dauphin>
+				
+				<dauphin id="696969" photo="ecco.jpg" date-naissance="04-04-1964">
+					<nom> Ecco </nom>
+					<sexe> F </sexe>
+					<taille unite="cm"> 202 </taille>
+					<poids unite="kg"> 101 </poids>
+				</dauphin>
+				
+				<dauphin id="0000007" photo="oum.jpg" date-naissance="07-07-1977">
+					<nom> Oum </nom>
+					<sexe> F </sexe>
+					<taille unite="cm"> 150 </taille>
+					<poids	unite="kg" status="mesure approximative"> 60 </poids>			
+				</dauphin>	
+			</dauphins>
+			
+			<poissons>
+				<selaciens>
+					<danger>Il est interdit de <b>nager</b> avec les requins</danger>
+					<requin id="11092001" espece="marteau" date-naissance="09-11-1991">
+						<nom>Oussama</nom>
+						<sexe>M</sexe>
+						 <taille unité="cm">455</taille>
+						 <poids unité="kg">540</poids>
+						 <commentaire>A tendance a se jeter contre les murs
+							<![CDATA[<<< marteau & cinglé !!! >>>]]>
+								<!-- Il faudra bien le faire piquer un jour -->
+						 </commentaire>
+					</requin>
+					
+					<requin id="vgyuh43" espèce="requin bleu" nom-savant="carcharias glaucus" date-naissance="2004-1-13">
+						<nom>Saddam</nom>
+						<sexe>M</sexe>
+						<taille unité="cm">355</taille>
+						<poids unité="kg" status="">425</poids>
+					</requin>
+				</selaciens>
+			</poissons>
+		</mammiferes-marins>
+	</aquarium>
+</zoo>

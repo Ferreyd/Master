@@ -1,0 +1,24 @@
+package tp1jeremyobs;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
+public class BoutonRandom implements ActionListener{
+	
+	private TableauEntierEtendu modele;
+
+
+	public BoutonRandom(TableauEntierEtendu modele){
+		this.modele = modele;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		this.modele.melange();	
+	}
+	
+
+}

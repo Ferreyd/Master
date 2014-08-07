@@ -1,0 +1,21 @@
+package tp2marc.decorateurs;
+
+import tp2marc.bebetes.Bebete;
+
+public abstract class DecorateurBebetes extends Bebete {
+
+	protected Bebete bebete;
+	
+	@Override
+	public void calculeDeplacementAFaire() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void effectueDeplacement() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

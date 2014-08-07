@@ -1,0 +1,20 @@
+package tp2nicolas.bebetes.usine;
+
+import tp2nicolas.bebetes.Bebete;
+
+/**
+ * @author Nicolas
+ *         Date : 20/11/13 17:26
+ */
+public abstract class BebeteFactory
+{
+
+    public Bebete formerBebete()
+    {
+        Bebete bebete = this.creerBebete();
+        return bebete;
+    }
+
+    public abstract Bebete creerBebete();
+
+}

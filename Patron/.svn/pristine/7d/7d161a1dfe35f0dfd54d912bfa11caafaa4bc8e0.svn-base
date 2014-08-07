@@ -1,0 +1,13 @@
+package tp2nicolas.bebetes;
+
+/**
+ * @author Nicolas
+ *         Date : 12/11/13 11:19
+ */
+public abstract class DecorateurBebete extends Bebete
+{
+    protected Bebete bebete; //Bebete sur laquelle on applique l'ingrédient
+
+
+
+}

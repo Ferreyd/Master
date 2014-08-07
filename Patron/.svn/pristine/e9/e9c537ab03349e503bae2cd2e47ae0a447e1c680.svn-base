@@ -1,0 +1,25 @@
+package tp2nicolas.bebetes.decorateur;
+
+import tp2nicolas.bebetes.Bebete;
+
+/**
+ * @author Nicolas
+ *         Date : 12/11/13 11:19
+ */
+public abstract class DecorateurBebete extends Bebete
+{
+
+    protected Bebete bebete; //Bebete
+
+    @Override
+    public void calculeDeplacementAFaire()
+    {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void effectueDeplacement()
+    {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+}

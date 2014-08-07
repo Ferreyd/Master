@@ -1,0 +1,33 @@
+package tp1nicolasobs;
+
+import java.awt.*;
+
+/**
+ * The type Vue bar.
+ * @author Nicolas          Date : 02/10/13 17:29
+ */
+public class VueBar implements IVueTableau
+{
+
+    /**
+     * Code du prof
+     * @param c  Component
+     * @param g  Graphics
+     * @param modele  ItableauEntier
+     */
+    @Override
+    public void dessine(Component c, Graphics g, ITableauEntier modele)
+    {
+        int nbElem = modele.getLongueur();
+        int w = c.getWidth() / nbElem;
+        int witdh = c.getWidth();
+        int height = c.getHeight();
+        double rapport = (double) height / (double) modele.getMaximum();
+        for(int i = 0; i < nbElem; i++)
+        {
+            int h = (int) (rapport * ((double) modele.getValeur(i)));
+            g.fillRect(i*w, height - h , w, h);
+        }
+
+    }
+}

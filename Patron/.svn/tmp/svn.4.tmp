@@ -1,0 +1,59 @@
+package tp1jeremyobs;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+
+public class TestObserverObservable {
+	
+	public static void main(String[] args){
+		
+		final JFrame f = new JFrame();
+		JPanel p_haut = new JPanel();
+		JPanel p_bas = new JPanel();
+		JButton b_random = new JButton("random");
+		JButton b_new_interne = new JButton("nouvelle fenetre interne");
+		
+		p_haut.setLayout(new GridLayout(0, 4));
+		p_bas.setLayout(new GridLayout());
+			
+		final TableauEntierEtendu t = new TableauEntierEtendu();
+		VueBar v = new VueBar();
+		GrapheurTabEntiers gt = new GrapheurTabEntiers(v, t);
+		
+		f.setSize(640, 480);
+		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		f.setLayout(new BorderLayout());
+		
+		f.add(p_haut, BorderLayout.NORTH);
+		f.add(p_bas, BorderLayout.CENTER);
+		
+		b_random.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				t.melange();
+				f.repaint();
+			}
+		});	
+		
+		// TODO Ajouter actionListener pour la nouvelle fenetre interne
+		
+		p_haut.add(b_random);
+		p_haut.add(b_new_interne);
+		p_bas.add(gt);
+		//f.add(gt, BorderLayout.CENTER);
+		/*f.add(b_random, BorderLayout.NORTH);
+		f.add(b_new_interne, BorderLayout.NORTH);*/
+		
+		f.setVisible(true);
+		
+	}
+
+}

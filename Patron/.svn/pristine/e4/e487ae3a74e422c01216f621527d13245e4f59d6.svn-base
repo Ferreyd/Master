@@ -1,0 +1,68 @@
+package tp2.damien.correction.Ecosystem;
+
+import java.util.ArrayList;
+
+import tp2.damien.correction.factoryBebete.BebeteFactory;
+import tp2.damien.correction.factoryBebete.FactoryAgoraphobe;
+import tp2.damien.correction.factoryBebete.FactoryEmergente;
+import tp2.damien.correction.factoryBebete.FactoryHasard;
+import tp2.damien.correction.factoryBebete.FactoryMixte;
+import tp2.damien.correction.factoryBebete.FactoryPeureuse;
+import tp2.damien.correction.visu.Champ;
+
+public class EcosystemFactory {
+	
+	private Champ champ;
+	ArrayList<String> types = new ArrayList<String>();
+	
+	public EcosystemFactory(Champ lechamp){
+		champ = lechamp;
+		types.add("emergente");
+		types.add("hasard");
+		types.add("mixte");
+		types.add("peureuse");
+		types.add("agoraphobe");
+	}
+	
+	
+	public BebeteFactory getEcosystem(String factory){
+		
+		BebeteFactory fab;
+		
+		switch (factory) {
+		case "emergente":
+			fab = new FactoryEmergente(champ);
+			break;
+			
+		case "hasard":
+			fab = new FactoryHasard(champ);
+			break;
+		
+		case "mixte":
+			fab = new FactoryMixte(champ);
+			break;
+			
+		case "peureuse":
+			fab = new FactoryPeureuse(champ);
+			break;
+			
+		case "agoraphobe":
+			fab = new FactoryAgoraphobe(champ);
+			break;
+			
+		default:
+			fab = BebeteFactory.getDefault(champ);
+			break;
+		}
+		
+		return fab;
+		
+	}
+	
+	public String[] getAll(){
+		
+		String[] ret = new String[types.size()];
+		
+		return types.toArray(ret);		
+	}
+}

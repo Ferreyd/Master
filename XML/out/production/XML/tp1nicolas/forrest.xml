@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes"?>
+<!DOCTYPE document SYSTEM "forrest.dtd">
+<?xml-stylesheet type="text/xsl" href="fg.xsl"?>
+<!-- à relire -->
+<?robots index="yes" follow="no"?>
+<document>
+    <titre style="bold" Style="big">Mes mémoires</titre>
+<auteur>
+<nom>Gump</nom>
+<prénom>Forrest</prénom>
+</auteur>
+<description xmlns="http://www.w3.org/1999/xhtml"
+        style="" Style="big" xml:space="preserve">
+        <!-- à partir d'ici, on peut utiliser
+        des éléments HTML <!&#45;&#45; et d'autres aussi &#45;&#45;>
+        c'est pratique pour du contenu
+        documentaire -->
+        <p>Ma maman disait
+            toujours : &#xA; "<i>la vie c'est comme une
+            7boîte de <b>chocolat</b>, on ne sait jamais
+            sur quoi on va tomber</i>".</p>
+<hr width=""/>
+<a  xlink:href="bubbagump.avi"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    href="bubbagump.avi"
+    >
+<object
+/>
+</a>
+<script language="JavaScript">
+<![CDATA[
+            function check() {
+                for (i=10; i>0; i++) {
+                    if ( a[b[i]] > ]]>5 ) break;
+                }
+            }
+
+<!-- vérifier si la boucle doit s'écrire
+avec i&#45;&#45; et pas i++ -->
+</script>
+<p>La suite, je ne m'en souviens plus...</p>
+        </description>
+        <xml_parse processor="JAXP"/>
+        <remarques>
+Mon document ne parse pas
+</remarques>
+        </document>
+        <!-- il y a quelques erreurs -->

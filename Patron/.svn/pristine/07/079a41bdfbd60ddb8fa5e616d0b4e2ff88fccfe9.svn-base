@@ -1,0 +1,82 @@
+package tp1nicolasobs;
+
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * @author Nicolas
+ *         Date : 02/10/13 17:47
+ */
+public class TestObserverObservable
+{
+
+
+
+
+
+    public static void main(String[] args)
+    {
+        //TODO Quand on appuie sur nouvelle fenetre, le même dessin doit apparaitre dans la même fenetre
+
+        //Initialisation variable
+        final JFrame fen = new JFrame();
+
+        final JPanel boutons = new JPanel();
+        final JPanel dessins = new JPanel();
+
+        JButton random  = new JButton("RANDOM");
+        JButton nvlleVue = new JButton("NOUVELLE VUE");
+
+
+
+        // Initialisation de la fenetre
+        fen.setSize(1600,900);
+        fen.setTitle("Observer Observable");
+        fen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        fen.setLayout(new BorderLayout());
+
+        //Initilialisation des JPanel
+        boutons.setLayout(new GridLayout());
+        dessins.setLayout(new GridLayout());
+
+        // Initialisation vue, grapheur et modele et du bouton
+        VueBar vue = new VueBar();
+        final TableauEntierEtendu modele = new TableauEntierEtendu();
+        final GrapheurTabEntiers grapheurTabEntiers = new GrapheurTabEntiers(vue,modele);
+
+        //Initilaisation boutons
+
+        random.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                modele.melange();
+                fen.repaint();
+            }
+        });
+        nvlleVue.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                dessins.add(grapheurTabEntiers);
+                fen.repaint();
+            }
+        });
+
+        boutons.add(random);
+        boutons.add(nvlleVue);
+
+        //Ajout du grapheur dans la fenetre et du bouton
+        fen.add(grapheurTabEntiers, BorderLayout.CENTER);
+
+        fen.add(boutons, BorderLayout.NORTH);
+
+
+
+
+        fen.setVisible(true);
+
+    }
+}

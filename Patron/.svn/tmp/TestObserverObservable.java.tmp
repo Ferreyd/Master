@@ -1,0 +1,139 @@
+package tp1jeremyobs;
+
+import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
+public class TestObserverObservable {
+	
+<<<<<<< .mine
+	public static void main(String[] args){
+		//JPanel pour les zones de la barre du haut...
+		
+		final JFrame f = new JFrame();
+		JButton b_random = new JButton("random");
+		JButton b_new_interne = new JButton("nouvelle fenetre interne");
+=======
+	private TableauEntierEtendu modele;
+	
+	public TableauEntierEtendu getModele() {
+		return modele;
+	}
+
+
+	public void setModele(TableauEntierEtendu modele) {
+		this.modele = modele;
+	}
+
+
+	private JFrame f = new JFrame();
+	private JPanel p_haut = new JPanel();
+	private JPanel p_bas = new JPanel();
+	private JButton b_random = new JButton("random");
+	private JButton b_new_interne = new JButton("nouvelle fenetre interne");
+	private JButton b_new_externe = new JButton("nouvelle fenetre externe");
+	
+	private List <GrapheurTabEntiers> fenetresInternes =  new ArrayList<GrapheurTabEntiers>();
+	
+	
+	public TestObserverObservable(){
+>>>>>>> .r24
+		
+<<<<<<< .mine
+=======
+		p_haut.setLayout(new GridLayout(1, 4));
+		//final GridLayout grid_p_bas = new GridLayout();
+		p_bas.setLayout(new GridLayout());
+>>>>>>> .r24
+		
+		//VUE
+		VueBar vue = new VueBar();	
+		//MODELE
+		this.modele = new TableauEntierEtendu();	
+		//CONTROLEUR
+		GrapheurTabEntiers controleur = new GrapheurTabEntiers(vue, modele);
+		
+		modele.addObserver(controleur);
+		
+		fenetresInternes.add(controleur);
+
+		
+		
+		
+		f.setSize(640, 480);
+		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		f.setLayout(new BorderLayout());
+<<<<<<< .mine
+		b_random.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				t.melange();
+				f.repaint();
+			}
+		});	
+=======
+		
+
+>>>>>>> .r24
+<<<<<<< .mine
+		f.add(gt, BorderLayout.CENTER);
+		f.add(b_random, BorderLayout.NORTH);
+=======
+		
+		b_random.addActionListener(new BoutonRandom(modele));
+		b_new_interne.addActionListener(new BoutonInterne(this));
+		b_new_externe.addActionListener(new BoutonExterne(this));
+		
+		//System.out.println(grid_p_bas.getColumns());
+		p_haut.add(b_random);
+		p_haut.add(b_new_interne);
+		p_haut.add(b_new_externe);
+		p_bas.add(controleur);
+>>>>>>> .r24
+		
+
+
+		f.add(p_haut, BorderLayout.NORTH);
+		f.add(p_bas, BorderLayout.CENTER);
+		f.setVisible(true);
+		
+	}
+	
+	public void addFrame(GrapheurTabEntiers controleur){
+		fenetresInternes.add(controleur);
+		f.remove(p_bas);
+		
+		
+		p_bas = new JPanel();
+		p_bas.setLayout(new GridLayout());
+		for (GrapheurTabEntiers val : fenetresInternes) {
+			p_bas.add(val);
+		}
+		f.add(p_bas, BorderLayout.CENTER);
+		f.pack();
+	}
+	
+	public void addFrames(GrapheurTabEntiers controleur){
+		
+			JFrame fe = new JFrame("fenetre externe ");
+			JPanel p = new JPanel(new BorderLayout());
+			fe.setSize(640, 480);
+			fe.setLayout(new BorderLayout());
+			p.add(controleur);
+			fe.add(p, BorderLayout.CENTER);
+			fe.setVisible(true);
+		
+	}
+	
+	public static void main(String[] args){
+		new TestObserverObservable();
+
+		
+	}
+
+}
